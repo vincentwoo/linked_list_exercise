@@ -65,15 +65,15 @@ class LinkedList
   end
 
   def pop(node = @head)
-    if length(node) == 0
+    if node == nil
       nil
     elsif length(node) == 1
       popped = node.value
       @head = nil
+      popped
     else
       recursive_pop(node)
     end
-    popped
   end
 
   def recursive_pop(node = @head)
@@ -82,7 +82,7 @@ class LinkedList
       node.next = nil
       popped
     else
-      pop(node.next)
+      recursive_pop(node.next)
     end
   end
 
@@ -106,6 +106,4 @@ class LinkedList
   end
 
 end
-
-# mylist = LinkedList.new
 

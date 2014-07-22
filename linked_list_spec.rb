@@ -43,12 +43,14 @@ describe LinkedList do
 
   describe '#pop' do
     it 'should remove and return the last element of list' do
-      # test cases to consider:
-      #   ordering
-      #   out of elements?
+      @list.pop.must_equal nil
       @list.push 1
       @list.pop.must_equal 1
       @list.at(0).must_equal nil
+      @list.push 1
+      @list.push 2
+      @list.pop.must_equal 2
+      @list.at(0).must_equal 1
     end
   end
 
