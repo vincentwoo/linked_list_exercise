@@ -91,8 +91,13 @@ describe LinkedList do
   end
 
   describe '#unshift' do
-    # it 'should add element before current first element of list'
-    # end
+    it 'should add element before current first element of list' do
+      @list.unshift 1
+      @list.unshift 'cat'
+      @list.at(0).must_equal 'cat'
+      @list.at(1).must_equal 1
+      @list.length.must_equal 2
+    end
   end
 
   describe '#to_a' do

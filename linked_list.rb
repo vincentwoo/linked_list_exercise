@@ -105,6 +105,18 @@ class LinkedList
     end
   end
 
+  def unshift(new_item_value)
+    new_node = Node.new(new_item_value)
+    new_node.next = @head
+    @head = new_node
+  end
+
 end
+
+list = LinkedList.new
+list.push 1
+p list
+list.unshift 2
+p list
 
 
