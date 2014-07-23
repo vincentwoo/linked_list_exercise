@@ -26,14 +26,10 @@ describe LinkedList do
       @list.push 'hi'
       @list.at(0).must_equal 'hi'
     end
-
-    # feel free to add a few more simple ones
   end
 
-  # more in depth specs per method here
-
   describe '#push' do
-    it 'should maintain order' do 
+    it 'should add element to end of list and maintain order' do 
       @list.push 1
       @list.at(0).must_equal 1
       @list.push 2
@@ -42,27 +38,42 @@ describe LinkedList do
   end
 
   describe '#pop' do
-    it 'should remove and return the last element of list' do
+    it 'should return nil on an empty list' do
       @list.pop.must_equal nil
+    end
+
+    it 'should return nil after all elements popped off list' do
       @list.push 1
       @list.pop.must_equal 1
       @list.at(0).must_equal nil
+    end
+
+    it 'should return correct length and remaining elements after pop' do
       @list.push 1
       @list.push 2
       @list.pop.must_equal 2
       @list.at(0).must_equal 1
+      @list.length.must_equal 1
     end
   end
 
   describe '#shift' do
+
+    it 'should return nil on an empty list' do
+      @list.shift.must_equal nil
+    end
+
     it 'should remove and return first element of list' do
       @list.push 1
       @list.shift.must_equal 1
-      @list.at(0).must_equal nil
+    end
+
+    it 'should return correct length and remaining elements after shift' do
       @list.push 1
       @list.push 2
-      @list.shift.must_equal 1
+      @list.shift
       @list.at(0).must_equal 2
+      @list.length.must_equal 1
     end
   end
 

@@ -101,9 +101,10 @@ class LinkedList
     elsif length(node) >= 1
       shifted = node.value
       @head = node.next
+      shifted
     end
-    shifted
   end
 
 end
+
 
