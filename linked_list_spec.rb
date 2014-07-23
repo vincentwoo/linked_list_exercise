@@ -42,6 +42,12 @@ describe LinkedList do
       @list.pop.must_equal nil
     end
 
+    it 'should remove and return last element of list' do
+      @list.push 1
+      @list.push 2
+      @list.pop.must_equal 2
+    end
+
     it 'should return nil after all elements popped off list' do
       @list.push 1
       @list.pop.must_equal 1
@@ -63,8 +69,15 @@ describe LinkedList do
       @list.shift.must_equal nil
     end
 
+    it 'should return nil after all elements shifted off list' do
+      @list.push 1
+      @list.shift
+      @list.at(0).must_equal nil
+    end
+
     it 'should remove and return first element of list' do
       @list.push 1
+      @list.push 2
       @list.shift.must_equal 1
     end
 
