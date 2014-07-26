@@ -111,12 +111,21 @@ class LinkedList
     @head = new_node
   end
 
+  def recursive_eql(first_node, second_node)
+    if first_node == nil && second_node == nil
+      true
+    elsif first_node == nil && second_node != nil || first_node != nil && second_node == nil
+      false
+    elsif first_node.value != second_node.value
+      false
+    else
+      recursive_eql(first_node.next, second_node.next)
+    end
+  end
+
+  def eql?(node = @head, list2)
+    recursive_eql(node, list2.head)
+  end
+
 end
-
-list = LinkedList.new
-list.push 1
-p list
-list.unshift 2
-p list
-
 

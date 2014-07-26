@@ -108,41 +108,41 @@ describe LinkedList do
     end
   end
 
-  # describe '#eql?' do
-  #   # returns true if every element in list1 is .eql? to every element in list2
+  describe '#eql?' do
+    # returns true if every element in list1 is .eql? to every element in list2
 
-  #   before do
-  #     @list1 = @list
-  #     @list2 = LinkedList.new
-  #     obj1 = {lol: 1}
-  #     obj2 = 'asdf'
-  #     @list1.push obj1
-  #     @list1.push obj2
-  #     @list2.push obj1
-  #     @list2.push obj2
-  #   end
+    before do
+      @list1 = @list
+      @list2 = LinkedList.new
+      obj1 = {lol: 1}
+      obj2 = 'asdf'
+      @list1.push obj1
+      @list1.push obj2
+      @list2.push obj1
+      @list2.push obj2
+    end
 
-  #   it 'is equal if both arrays are empty' do
-  #     LinkedList.new.eql?(LinkedList.new).must_equal true
-  #   end
+    it 'is equal if both arrays are empty' do
+      LinkedList.new.eql?(LinkedList.new).must_equal true
+    end
 
-  #   it 'is equal in trivial case' do
-  #     @list1.eql?(@list2).must_equal true
-  #   end
+    it 'is equal in trivial case' do
+      @list1.eql?(@list2).must_equal true
+    end
 
-  #   it "doesn't care about the order of equality comparison" do
-  #     @list2.eql?(@list1).must_equal true
-  #   end
+    it "doesn't care about the order of equality comparison" do
+      @list2.eql?(@list1).must_equal true
+    end
 
-  #   it 'returns false when lists are different lengths' do
-  #     @list1.pop
-  #     @list1.eql?(@list2).must_equal false
-  #   end
+    it 'returns false when lists are different lengths' do
+      @list1.pop
+      @list1.eql?(@list2).must_equal false
+    end
 
-  #   it 'returns false if an element differs' do
-  #     @list1.pop
-  #     @list1.push 'nope'
-  #     @list1.eql?(@list2).must_equal false
-  #   end
-  # end
+    it 'returns false if an element differs' do
+      @list1.pop
+      @list1.push 'nope'
+      @list1.eql?(@list2).must_equal false
+    end
+  end
 end
