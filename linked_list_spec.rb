@@ -101,7 +101,7 @@ describe LinkedList do
   end
 
   describe '#to_a' do
-    it 'should returns a copy of linked list as a normal array' do
+    it 'should return a copy of linked list as a normal array' do
       @list.push 1
       @list.push 2
       @list.to_a.must_equal [1, 2]
@@ -145,4 +145,30 @@ describe LinkedList do
       @list1.eql?(@list2).must_equal false
     end
   end
+
+  describe '#dup' do
+    it 'should return a new linked list with same elements in same order' do
+      @list.push 1
+      @list.push 2
+      @new_list = @list.dup
+      @new_list.at(0).must_equal 1
+      @new_list.at(1).must_equal 2
+      @new_list.at(2).must_equal nil
+    end
+
+    it 'should return empty list in trivial case' do
+      @new_list = @list.dup
+      @new_list.at(0).must_equal nil
+    end
+
+    it 'should not mutate original list' do
+      @list.push 1
+      @list.push 2
+      @list.length.must_equal 2
+      @list.dup
+      @list.at(1).must_equal 2
+      @list.length.must_equal 2
+    end
+  end
+
 end

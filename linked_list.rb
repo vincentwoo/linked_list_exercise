@@ -86,7 +86,8 @@ class LinkedList
     end
   end
 
-  def to_a(node = @head)
+  def to_a
+    node = @head
     array = []
     while node != nil
       array << node.value
@@ -125,6 +126,20 @@ class LinkedList
 
   def eql?(node = @head, list2)
     recursive_eql(node, list2.head)
+  end
+
+
+  def dup
+    node = @head
+    dup_list = LinkedList.new
+    while node != nil
+      dup_list.push(node.value)
+      node = node.next
+    end
+    dup_list
+  end
+
+  def reverse
   end
 
 end
