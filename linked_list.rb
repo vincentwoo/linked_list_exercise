@@ -140,6 +140,13 @@ class LinkedList
   end
 
   def reverse
+    node = @head
+    reverse_list = LinkedList.new
+    while node != nil
+      reverse_list.unshift(node.value)
+      node = node.next
+    end
+    reverse_list
   end
 
 end

@@ -171,4 +171,29 @@ describe LinkedList do
     end
   end
 
+  describe '#reverse' do
+    it 'should return a new list with elements in reverse order' do
+      @list.push 1
+      @list.push 2
+      @new_list = @list.reverse
+      @new_list.at(0).must_equal 2
+      @new_list.at(1).must_equal 1
+      @new_list.at(2).must_equal nil
+    end
+
+    it 'should return empty list in trivial case' do
+      @new_list = @list.reverse
+      @new_list.at(0).must_equal nil
+    end
+
+    it 'should not mutate original list' do
+      @list.push 1
+      @list.push 2
+      @list.length.must_equal 2
+      @list.reverse
+      @list.at(1).must_equal 2
+      @list.length.must_equal 2
+    end
+  end
+
 end
