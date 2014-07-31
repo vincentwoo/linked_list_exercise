@@ -22,11 +22,24 @@ class LinkedList
   end
 
   def print(node = @head)
-    if node.next == nil
+    if node.nil?
+      nil
+    elsif node.next == nil
       p node.value
     else
       p node.value
       print(node.next)
+    end
+  end
+
+  def rev_print(node = @head)
+    if node.nil?
+      nil
+    elsif node.next == nil
+      p node.value
+    else
+      rev_print(node.next)
+      p node.value
     end
   end
 
@@ -96,22 +109,6 @@ class LinkedList
     array
   end
 
-  def shift(node = @head)
-    if length(node) == 0
-      nil
-    elsif length(node) >= 1
-      shifted = node.value
-      @head = node.next
-      shifted
-    end
-  end
-
-  def unshift(new_item_value)
-    new_node = Node.new(new_item_value)
-    new_node.next = @head
-    @head = new_node
-  end
-
   def recursive_eql(first_node, second_node)
     if first_node == nil && second_node == nil
       true
@@ -128,7 +125,6 @@ class LinkedList
     recursive_eql(node, list2.head)
   end
 
-
   def dup
     node = @head
     dup_list = LinkedList.new
@@ -137,6 +133,22 @@ class LinkedList
       node = node.next
     end
     dup_list
+  end
+
+  def shift(node = @head)
+    if length(node) == 0
+      nil
+    elsif length(node) >= 1
+      shifted = node.value
+      @head = node.next
+      shifted
+    end
+  end
+
+  def unshift(new_item_value)
+    new_node = Node.new(new_item_value)
+    new_node.next = @head
+    @head = new_node
   end
 
   def reverse
@@ -149,5 +161,27 @@ class LinkedList
     reverse_list
   end
 
+  def reverse!
+    current_node = @head
+    prev_node = nil
+
+    while current_node != nil
+      next_node = current_node.next
+      current_node.next = prev_node
+      prev_node = current_node
+      current_node = next_node
+    end
+    @head = prev_node
+    self
+  end
+
+  def each(&block)
+    node = @head
+    while node
+      block.call(node.value)
+      node = node.next
+    end
+  end
+      
 end
 

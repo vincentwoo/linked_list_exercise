@@ -196,4 +196,46 @@ describe LinkedList do
     end
   end
 
+  describe '#reverse!' do
+    it 'should return the list with elements in reverse order' do
+      @list.push 1
+      @list.push 2
+      @list.push 3
+      @list.reverse!
+      @list.at(0).must_equal 3
+      @list.at(1).must_equal 2
+      @list.at(2).must_equal 1
+      @list.at(3).must_equal nil
+    end
+
+    it 'should return empty list in trivial case' do
+      @list.reverse!
+      @list.at(0).must_equal nil
+    end
+
+    it 'should have same length after reverse!' do
+      @list.push 1
+      @list.push 2
+      @list.length.must_equal 2
+      @list.reverse!
+      @list.length.must_equal 2
+    end
+
+    it 'should be class LinkedList' do
+      @list.push  1
+      @list.reverse!
+      @list.class.must_equal LinkedList
+    end
+  end
+
+  describe '#each' do
+    it 'should call a block for each element in the list' do
+      array = []
+      @list.push 1
+      @list.push 2
+      @list.each { |n| array << n }
+     array.must_equal [1, 2]
+    end
+  end
+
 end
