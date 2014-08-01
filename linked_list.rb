@@ -1,4 +1,6 @@
 class LinkedList
+
+  include Enumerable
   
   class Node
     attr_accessor :value, :next
@@ -182,6 +184,10 @@ class LinkedList
       node = node.next
     end
   end
-      
+
+  def print2 
+    each { |n| p n }
+  end
+   
 end
 
