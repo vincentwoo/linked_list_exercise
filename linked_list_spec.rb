@@ -222,7 +222,7 @@ describe LinkedList do
     end
 
     it 'should be class LinkedList' do
-      @list.push  1
+      @list.push 1
       @list.reverse!
       @list.class.must_equal LinkedList
     end
@@ -236,6 +236,55 @@ describe LinkedList do
       @list.each { |n| array << n }
      array.must_equal [1, 2]
     end
+  end
+
+  describe '#inject' do
+    it 'should return nil with list length 0 and no default argument' do
+      @list.inject { |memo, n| memo }.must_equal nil
+    end
+
+    it 'should return default value with list length 0 and default argument' do
+      @list.inject(3) { |memo, n| memo }.must_equal 3
+    end
+
+    it 'should return value of list with list length 1 and no default argument' do
+      @list.push 1
+      @list.inject { |memo, n| memo }.must_equal 1
+    end
+
+    it 'should do likewise in nil case' do
+      @list.push nil
+      @list.inject { |memo, n| memo }.must_equal nil
+    end
+
+    before do
+      @list2 = LinkedList.new
+      @list2.push 1
+      @list2.push 2
+      @list2.push 3
+      @list2.push 4
+
+      @list3 = LinkedList.new
+      @list3.push 'a'
+      @list3.push 'b'
+    end
+
+      it 'should work how inject is supposed to with no default arg and a block' do
+        @list2.inject { |memo, n| memo + n }.must_equal 10
+        @list2.inject { |memo, n| memo * n }.must_equal 24
+        @list3.inject { |memo, n| memo + n }.must_equal 'ab'
+      end
+
+      it 'should work how inject is supposed to with default arg and a block' do
+        @list2.inject(10) { |memo, n| memo + n }.must_equal 20
+        @list2.inject(2) { |memo, n| memo * n }.must_equal 48
+        @list3.inject('ba') { |memo, n| memo + n }.must_equal 'baab'
+      end
+
+      it 'should work how inject is supposed to with no block' do
+        @list.inject(10) { }.must_equal 10
+        @list2.inject(10) { }.must_equal nil
+      end
   end
 
 end

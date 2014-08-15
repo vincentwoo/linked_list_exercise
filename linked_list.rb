@@ -188,6 +188,33 @@ class LinkedList
   def print2 
     each { |n| p n }
   end
-   
+
+  def inject(*args, &block)
+    #no default value and list is 0
+    if args.length == 0 && self.length == 0
+      return nil
+    #no default value and list is 1
+    elsif args.length == 0 && self.length == 1
+      return @head.value
+    #no default value and list is suitable length
+    elsif args.length == 0
+      accumulator = @head.value
+      self.shift
+      self.each do |node|
+        accumulator = block.call(accumulator, node)
+      end
+    #default value and list is 0
+    elsif args.length == 1 && self.length == 0
+      return args.first
+    #default value and list is 1 or more
+    elsif args.length == 1 && self.length >= 1
+      accumulator = args.first
+      self.each do |node|
+        accumulator = block.call(accumulator, node)
+      end
+    end
+    accumulator
+  end
+
 end
 
