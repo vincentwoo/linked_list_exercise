@@ -199,9 +199,11 @@ class LinkedList
     #no default value and list is suitable length
     elsif args.length == 0
       accumulator = @head.value
-      self.shift
-      self.each do |node|
-        accumulator = block.call(accumulator, node)
+      node = @head
+      while node.next
+        current = node.next.value
+        accumulator = block.call(accumulator, current)
+        node = node.next
       end
     #default value and list is 0
     elsif args.length == 1 && self.length == 0

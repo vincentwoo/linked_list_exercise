@@ -285,6 +285,12 @@ describe LinkedList do
         @list.inject(10) { }.must_equal 10
         @list2.inject(10) { }.must_equal nil
       end
+
+      it 'does not modify original list' do
+        @list4 = @list2.dup
+        @list2.inject { |memo, n| memo + n }
+        @list2.to_a.must_equal @list4.to_a
+      end
   end
 
 end
